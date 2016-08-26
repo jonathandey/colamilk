@@ -7,7 +7,12 @@ Vue.use(Vuex)
 // Create an object to hold the initial state when
 // the app starts up
 const state = {
-	albums: []
+	albums: [],
+
+	album: { 
+		title: null, 
+		photos: [] 
+	}
 }
 
 // Create an object storing various mutations. We will write the mutation
@@ -26,6 +31,10 @@ const mutations = {
 
 	UPDATE_ALBUM (state, album) {
 		console.log('update album', album)
+	},
+
+	SET_ALBUM_CONTEXT (state, album) {
+		state.album = album
 	}
 }
 

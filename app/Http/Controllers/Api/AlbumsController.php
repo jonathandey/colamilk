@@ -17,6 +17,14 @@ class AlbumsController extends Controller {
 		return $user->albums;
 	}
 
+	public function load(Request $request)
+	{
+		$user = $request->user();
+		$album = $user->albums()->with('photos')->findOrFail($request->get('id'));
+
+		return $album;
+	}
+
 	public function create(Request $request)
 	{
 		$this->validate($request, Album::$validationRules);

@@ -1,13 +1,13 @@
 <template>
 	<div class="row">
-		<album v-for="album in albums | filterBy smart" :album="album"></album>
+		<album-thumbnail v-for="album in albums | filterBy smart" :album="album"></album-thumbnail>
 	</div>
 </template>
 
 <script>
 	import { getAlbums } from '../vuex/actions'
 
-	import Album from './Album.vue'
+	import AlbumThumbnail from './AlbumThumbnail.vue'
 
 	export default {
 		props: ['smart'],
@@ -22,11 +22,7 @@
 		},
 
 		components: {
-			Album
-		},
-
-		ready () {
-			// this.getAlbums()
+			AlbumThumbnail
 		}
 	}
 </script>

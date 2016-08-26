@@ -18,6 +18,16 @@ export const deleteAlbum = function({dispatch, state}, album) {
 
 export const updateAlbum = function({dispatch, state}, album) {
 	return API.updateAlbum(album)
-		.then(resp => dispatch('UPDATE_ALBUM', resp))
+		.then(resp => dispatch('UPDATE_ALBUM', resp.data))
+		.catch(error => console.error(error))
+}
+
+export const setAlbumContext = function({ dispatch, state }, album) {
+	dispatch('SET_ALBUM_CONTEXT', album)
+}
+
+export const loadAlbum = function({ dispatch, state }, albumId) {
+	return API.loadAlbum(albumId)
+		.then(resp => dispatch('SET_ALBUM_CONTEXT', resp.data))
 		.catch(error => console.error(error))
 }

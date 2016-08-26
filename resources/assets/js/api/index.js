@@ -16,6 +16,12 @@ const API = {
 
 	updateAlbum(album = null) {
 		return Vue.http.put('/api/album', album)
+	},
+
+	loadAlbum(id) {
+		let params = { id }
+
+		return Vue.http.get('/api/album', { params })
 	}
 }
 

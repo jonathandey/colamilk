@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+const router = require('./router')
 
 import store from './vuex/store'
 
@@ -16,10 +17,11 @@ import store from './vuex/store'
  */
 
 Vue.component('album-list', require('./components/AlbumList.vue'));
-Vue.component('dashboard', require('./components/Dashboard.vue'));
 
-const app = new Vue({
-    el: 'body',
-
+const app = Vue.extend({
     store
-});
+})
+
+router.start(app, 'body')
+
+
