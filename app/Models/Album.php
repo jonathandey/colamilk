@@ -19,6 +19,11 @@ class Album extends Model
         'title',
     ];
 
+    public function photos()
+    {
+        return $this->hasMany('App\Models\Photo');
+    }
+
     public function scopeSmart($query)
     {
     	return $query->where('smart', true);
