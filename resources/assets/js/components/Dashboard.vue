@@ -22,7 +22,7 @@
 	        <div class="row">
 	            <div class="col-sm-12">
 	                <h3 class="page-header">
-	                    {{ smartLabel }}
+	                    Smart Albums
 	                </h3>
 	            </div>
 	        </div>
@@ -32,7 +32,7 @@
 	        <div class="row">
 	            <div class="col-sm-12">
 	                <h3 class="page-header">
-	                    {{ generalLabel }}
+	                    Albums
 	                </h3>
 	            </div>
 	        </div>

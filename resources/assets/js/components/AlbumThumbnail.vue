@@ -1,14 +1,11 @@
 <template>
 	<article class="album album-thumbnail col-sm-2" @click="openAlbum">
 		<header class="overlay">
-			<h4 class="title" 
-				@dblclick.self="makeEditable" 
-				@keydown.13.prevent="tryUpdate" 
-				@blur="discardEditable">
+			<h4 class="title">
 				{{ album.title }}
 			</h4>
 		</header>
-		[<a href="#" @click.prevent="tryDelete"><i class="fa fa-trash"></i></a>]
+		[<a href="#" @click.prevent.stop="tryDelete"><i class="fa fa-trash"></i></a>]
 	</article>
 </template>
 
@@ -40,37 +37,6 @@
 				this.setAlbumContext(this.album)
 
 				this.$router.go({ name: 'album', params: { id: this.album.id } })
-			},
-
-			makeEditable (e) {
-				if(this.album.smart)
-				{
-					return false;
-				}
-
-				e.target.setAttribute('contenteditable', true)
-				e.target.focus()
-			},
-
-			discardEditable (e) {
-				e.target.removeAttribute('contenteditable')
-				e.target.innerText = this.album.title
-			},
-
-			tryUpdate (e) {
-				e.target.removeAttribute('contenteditable')
-
-				let title = e.target.innerText.trim()
-
-				if(!title.length)
-				{
-					e.target.innerText = this.album.title
-				}
-				else
-				{
-					this.album.title = title
-					this.updateAlbum(this.album)
-				}
 			}
 		},
 
