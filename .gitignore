@@ -4,4 +4,6 @@
 /.idea
 Homestead.yaml
 Homestead.json
+/storage/oauth-private.key
+/storage/oauth-public.key
 .env
