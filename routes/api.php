@@ -13,6 +13,13 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::group(['middleware' => ['auth:api']], function() {
+	Route::get('/albums', 'Api\AlbumsController@index');
+	Route::post('/album', 'Api\AlbumsController@create');
+	Route::delete('/album', 'Api\AlbumsController@delete');
+	Route::put('/album', 'Api\AlbumsController@update');
+});
+
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');

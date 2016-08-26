@@ -21,3 +21,10 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Models\Album::class, function (Faker\Generator $faker) use ($factory) {
+    return [
+        'title' => $faker->word,
+        'smart' => rand(0, 1),
+    ];
+});
