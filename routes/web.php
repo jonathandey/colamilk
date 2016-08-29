@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +17,10 @@
 // });
 
 Auth::routes();
+
+Route::post('/upload', function(Request $request) {
+	dd($request->file('files'));
+});
 
 Route::get('/home', 'HomeController@index');
 

@@ -13,7 +13,9 @@
 							<i class="fa fa-plus"></i>
 						</button>
 						<ul class="dropdown-menu">
-							<li><a href="#">Upload Photos</a></li>
+							<li>
+								<uploader></uploader>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -37,13 +39,15 @@
 </template>
 
 <script>
+	
+	import Uploader from './Uploader.vue'
 	import PhotoThumbnail from './PhotoThumbnail.vue'
-
 	import { loadAlbum, setAlbumContext, updateAlbum } from '../vuex/actions'
 
 	export default {
 		components: {
-			PhotoThumbnail
+			PhotoThumbnail,
+			Uploader
 		},
 
 		vuex: {

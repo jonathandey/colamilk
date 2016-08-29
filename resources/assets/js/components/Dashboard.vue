@@ -8,7 +8,9 @@
 							<i class="fa fa-plus"></i>
 						</button>
 						<ul class="dropdown-menu">
-							<li><a href="#">Upload Photos</a></li>
+							<li>
+								<uploader></uploader>
+							</li>
 							<li role="separator" class="divider"></li>
 							<li>
 								<a href="#" @click.prevent="newAlbum">New Album</a>
@@ -42,15 +44,19 @@
 </template>
 
 <script>
-	import { getAlbums, createAlbum } from '../vuex/actions'
+	import Uploader from './Uploader.vue'
+	import { getAlbums, createAlbum, setUploader } from '../vuex/actions'
 
 	export default {
-		props: ['smartLabel', 'generalLabel'],
+		components: {
+			Uploader
+		},
 
 		vuex: {
 			actions: {
 				getAlbums,
-				createAlbum
+				createAlbum,
+				setUploader
 			}
 		},
 
