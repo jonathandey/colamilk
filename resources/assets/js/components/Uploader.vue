@@ -5,7 +5,6 @@
 </template>
 
 <script>
-	// import Uploader from '../Uploader'
 	const Dropzone = require('dropzone')
 
 	export default {
@@ -20,6 +19,14 @@
 
 			acceptedFiles: {
 				default: '.jpg,.jpeg,.png'
+			},
+
+			params: {
+				default: {}
+			},
+
+			collection: {
+				default: []
 			}
 		},
 
@@ -37,15 +44,42 @@
 				headers: {
 					'X-CSRF-TOKEN': Laravel.csrfToken
 				},
-				paramName: 'files',
+				paramName: 'photos',
 				clickable: document.querySelectorAll('.' + this.triggerClass)[0],
 				acceptedFiles: this.acceptedFiles,
-				autoProcessQueue: true
+				previewTemplate: '<div></div>'
 			})
 		},
 
 		detached () {
 			this.uploader.destroy()
+		},
+
+		ready () {
+			this.uploader.on('sending', (file, xhr, form) => this.onSending(file, xhr, form))
+			this.uploader.on('addedfile', (file) => this.onAddedFile(file))
+			this.uploader.on('thumbnail', (file, thumb) => this.onThumbnail(file, thumb))
+		},
+
+		methods: {
+			onSending (file, xhr, form) {
+				form.append('album_id', this.params['album_id'])
+			},
+
+			onAddedFile (file) {
+				this.collection.push({ name: file.name, thumbnail: '#' })
+			},
+
+			onThumbnail (file, thumb) {
+				this.collection.forEach((photo) => {
+					if(photo.name == file.name)
+					{
+						photo.thumbnail = thumb
+					}
+				})
+
+				console.log(this.collection)
+			}
 		}
 	}
 </script>

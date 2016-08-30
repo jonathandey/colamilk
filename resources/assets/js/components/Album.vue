@@ -14,7 +14,7 @@
 						</button>
 						<ul class="dropdown-menu">
 							<li>
-								<uploader></uploader>
+								<uploader :collection="album.photos" :params="uploadParams"></uploader>
 							</li>
 						</ul>
 					</div>
@@ -32,6 +32,9 @@
 		                    {{ album.title }}
 		                </h3>
 					</header>
+					<div class="row">
+						<photo-thumbnail v-for="photo in album.photos" :photo="photo"></photo-thumbnail>
+					</div>
 				</section>
 			</div>
 		</div>
@@ -48,6 +51,12 @@
 		components: {
 			PhotoThumbnail,
 			Uploader
+		},
+
+		data () {
+			return {
+				uploadParams: {}
+			}
 		},
 
 		vuex: {
@@ -99,8 +108,12 @@
 			}
 		},
 
-		ready () {
-			this.loadAlbum(this.$route.params.id)
+		route: {
+			activate () {
+				this.loadAlbum(this.$route.params.id)
+
+				this.uploadParams = { album_id: this.$route.params.id }
+			}
 		}
 	}
 </script>
