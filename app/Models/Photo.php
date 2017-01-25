@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Storage;
 use Illuminate\Database\Eloquent\Model;
 
 class Photo extends Model
@@ -14,6 +15,10 @@ class Photo extends Model
     protected $fillable = [
     	'title',
     	'description',
+    ];
+
+    protected $appends = [
+        'thumbnail',
     ];
 
     public function album()
@@ -29,5 +34,10 @@ class Photo extends Model
     public function scopePrivate($query)
     {
     	return $query->where('shared', false);
+    }
+
+    public function getThumbnailAttribute()
+    {
+        return Storage::disk('local')->url('photos/a/' . $this->album_id . '/' . $this->file_name);
     }
 }

@@ -113,6 +113,8 @@
 				this.loadAlbum(this.$route.params.id)
 
 				this.uploadParams = { album_id: this.$route.params.id }
+
+				setTimeout(() => console.log(this.album), 2000)
 			}
 		}
 	}

@@ -45,7 +45,7 @@
 
 <script>
 	import Uploader from './Uploader.vue'
-	import { getAlbums, createAlbum, setUploader } from '../vuex/actions'
+	import { getAlbums, createAlbum } from '../vuex/actions'
 
 	export default {
 		components: {
@@ -55,8 +55,7 @@
 		vuex: {
 			actions: {
 				getAlbums,
-				createAlbum,
-				setUploader
+				createAlbum
 			}
 		},
 

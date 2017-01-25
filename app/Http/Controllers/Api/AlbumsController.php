@@ -35,7 +35,11 @@ class AlbumsController extends Controller {
 		$album = new Album($inputs);
 		$album->smart = false;
 
-		return $user->albums()->save($album);
+		$album = $user->albums()->save($album, [
+			'owner' => true, 'read' => true, 'write' => true, 'delete' => true
+		]);
+
+		return $album;
 	}
 
 	public function delete(Request $request)

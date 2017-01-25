@@ -22,11 +22,15 @@
 			},
 
 			params: {
-				default: {}
+				default () {
+					return {}
+				}
 			},
 
 			collection: {
-				default: []
+				default () {
+					return []
+				}
 			}
 		},
 

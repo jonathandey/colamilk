@@ -18,9 +18,6 @@ use Illuminate\Http\Request;
 
 Auth::routes();
 
-Route::post('/upload', function(Request $request) {
-	dd($request->file('photos'), $request->get('album_id'));
-});
-
+Route::post('/upload', 'UploadController@index');
 Route::get('/home', 'HomeController@index');
 
